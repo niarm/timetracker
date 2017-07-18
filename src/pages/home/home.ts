@@ -1,18 +1,24 @@
-import {Component} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActionSheetController, ModalController, NavController} from 'ionic-angular';
 import {ITimeEntry} from "../../interfaces/ITimeEntry";
 import {TimeEntryPage} from "../time-entry/time-entry-page";
+import {MdDatepicker, MdDatepickerInput} from "@angular/material";
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-export class HomePage {
+export class HomePage implements OnInit{
 
+
+  @ViewChild('datepickerInput') datepickerInput:MdDatepickerInput<Date>;
+
+
+  public calendarStartDate: Date;
   public timeEntries: ITimeEntry[];
   private actionSheetOptions = {
     title: '',
-    target:null,
+    target: null,
     buttons: [
       {
         text: 'Bearbeiten',
@@ -41,58 +47,64 @@ export class HomePage {
   constructor (public navCtrl: NavController,
                public actionSheetCtrl: ActionSheetController,
                public modalCtrl: ModalController) {
-    this.timeEntries=[
+
+    this.calendarStartDate = new Date();
+
+    this.timeEntries = [
       {
-        "_id":"1",
-        "_rev":"1",
-        "title":"Eine Aufgabe",
-        "duration":"2,5 h"
+        "_id": "1",
+        "_rev": "1",
+        "title": "Eine Aufgabe",
+        "duration": "2,5 h"
       },
       {
-        "_id":"2",
-        "_rev":"2",
-        "title":"Eine Aufgabe",
-        "duration":"1,5 h"
+        "_id": "2",
+        "_rev": "2",
+        "title": "Eine Aufgabe",
+        "duration": "1,5 h"
       },
       {
-        "_id":"3",
-        "_rev":"1",
-        "title":"Arbeitsschritt so und so",
-        "duration":"4,5 h"
+        "_id": "3",
+        "_rev": "1",
+        "title": "Arbeitsschritt so und so",
+        "duration": "4,5 h"
       },
       {
-        "_id":"4",
-        "_rev":"1",
-        "title":"Arbeitsschritt so und so",
-        "duration":"0,5 h"
+        "_id": "4",
+        "_rev": "1",
+        "title": "Arbeitsschritt so und so",
+        "duration": "0,5 h"
       },
       {
-        "_id":"5",
-        "_rev":"2",
-        "title":"Eine Aufgabe",
-        "duration":"1,5 h"
+        "_id": "5",
+        "_rev": "2",
+        "title": "Eine Aufgabe",
+        "duration": "1,5 h"
       },
       {
-        "_id":"6",
-        "_rev":"1",
-        "title":"Arbeitsschritt so und so",
-        "duration":"4,5 h"
+        "_id": "6",
+        "_rev": "1",
+        "title": "Arbeitsschritt so und so",
+        "duration": "4,5 h"
       },
       {
-        "_id":"7",
-        "_rev":"1",
-        "title":"Arbeitsschritt so und so",
-        "duration":"0,5 h"
+        "_id": "7",
+        "_rev": "1",
+        "title": "Arbeitsschritt so und so",
+        "duration": "0,5 h"
       }
     ];
   }
 
-  public onNewEntryClick():void{
+  ngOnInit (): void {
+  }
+
+  public onNewEntryClick (): void {
     let modal = this.modalCtrl.create(TimeEntryPage);
     modal.present();
   }
 
-  public onItemClicked(item:ITimeEntry):void{
+  public onItemClicked (item: ITimeEntry): void {
     this.actionSheetOptions.target = item;
     this.actionSheetOptions.title = "Ausgewählt: " + item.title;
     let actionSheet = this.actionSheetCtrl.create(this.actionSheetOptions);

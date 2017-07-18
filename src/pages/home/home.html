@@ -4,9 +4,9 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title> </ion-title>
-    <p class="datepicker-caption">22.08.2017</p>
+    <p class="datepicker-caption">{{datepickerInput.value || ((calendarStartDate.getUTCDate()) + "." + (calendarStartDate.getUTCMonth()+1)+"."+calendarStartDate.getFullYear())}}</p>
     <ion-buttons end>
-      <input class="datepicker-input" mdInput [mdDatepicker]="picker" placeholder="Choose a date">
+      <input #datepickerInput class="datepicker-input" mdInput [mdDatepicker]="picker" placeholder="Choose a date">
       <button class="datepicker-button" mdSuffix [mdDatepickerToggle]="picker" ></button>
     </ion-buttons>
   </ion-navbar>
@@ -27,5 +27,5 @@
     </ion-row>
   </ion-grid>
 
-  <md-datepicker #picker touchUi="true"></md-datepicker>
+  <md-datepicker #picker [startAt]="calendarStartDate" touchUi="true"></md-datepicker>
 </ion-content>
