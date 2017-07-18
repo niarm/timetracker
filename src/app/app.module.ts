@@ -9,12 +9,14 @@ import { ListPage } from '../pages/list/list';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { TimeEntriesProvider } from '../providers/time-entries/time-entries';
+import { TimeCardComponent } from '../components/time-card/time-card';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    TimeCardComponent
   ],
   imports: [
     BrowserModule,

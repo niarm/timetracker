@@ -1,0 +1,3 @@
+@mixin defaultBackgroundColor() {
+  background-color: color($colors, light);
+}

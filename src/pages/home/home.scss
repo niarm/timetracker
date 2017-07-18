@@ -1,3 +1,15 @@
 page-home {
 
+
+  .content-area{
+    @include defaultBackgroundColor();
+  }
+
+
+  .addTimeEntryButton{
+    bottom: 20px;
+    right: 20px;
+  }
 }
+
+

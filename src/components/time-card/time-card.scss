@@ -1,0 +1,14 @@
+.custom-card {
+  p{
+    color:color($colors, dark);
+  }
+
+  h2{
+    color:color($colors, dark);
+    font-weight: bold;
+  }
+
+  ion-note{
+    margin-left:-5px;
+  }
+}
