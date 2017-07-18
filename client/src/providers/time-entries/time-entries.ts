@@ -24,6 +24,30 @@ export class TimeEntriesProvider {
     this.db.sync(this.remote, this.options);
   }
 
+  public init (details): void {
+    this.db = new PouchDB('cloudo');
+
+    this.remote = details.userDBs.supertest;
+
+    let options = {
+      live: true,
+      retry: true,
+      continuous: true
+    };
+
+    this.db.sync(this.remote, options);
+
+    console.log(this.db);
+  }
+
+  public logout (): void {
+    this.data = null;
+
+    this.db.destroy().then(() => {
+      console.log("database removed");
+    });
+  }
+
   public getTimeEntries (): Promise<ITimeEntry[]> {
 
     if (this.data) {
@@ -34,11 +58,10 @@ export class TimeEntriesProvider {
       this.db.allDocs({
         include_docs: true
       }).then((result) => {
-
         this.data = [];
 
         let docs = result.rows.map((row) => {
-          this.data.push(<TimeEntry>row.doc);
+          this.data.push(row.doc);
         });
 
         resolve(this.data);
@@ -47,9 +70,10 @@ export class TimeEntriesProvider {
           this.handleChange(change);
         });
 
-      }).catch(error => {
+      }).catch((error) => {
         console.log(error);
       });
+
     });
   }
 
