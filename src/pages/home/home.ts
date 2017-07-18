@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
-import {TimeEntry} from "../../models/TimeEntry";
+import {ActionSheetController, ModalController, NavController} from 'ionic-angular';
+import {ITimeEntry} from "../../interfaces/ITimeEntry";
+import {TimeEntryPage} from "../time-entry/time-entry-page";
 
 @Component({
   selector: 'page-home',
@@ -8,9 +9,38 @@ import {TimeEntry} from "../../models/TimeEntry";
 })
 export class HomePage {
 
-  public timeEntries: TimeEntry[];
+  public timeEntries: ITimeEntry[];
+  private actionSheetOptions = {
+    title: '',
+    target:null,
+    buttons: [
+      {
+        text: 'Bearbeiten',
+        handler: () => {
+          console.log('EDIT clicked');
+        }
+      },
+      {
+        text: 'Löschen',
+        role: 'destructive',
+        handler: () => {
+          console.log('Destructive clicked');
+          console.log(this.actionSheetOptions.target);
+        }
+      },
+      {
+        text: 'Abbrechen',
+        role: 'cancel',
+        handler: () => {
+          console.log('Cancel clicked');
+        }
+      }
+    ]
+  };
 
-  constructor (public navCtrl: NavController) {
+  constructor (public navCtrl: NavController,
+               public actionSheetCtrl: ActionSheetController,
+               public modalCtrl: ModalController) {
     this.timeEntries=[
       {
         "_id":"1",
@@ -55,6 +85,18 @@ export class HomePage {
         "duration":"0,5 h"
       }
     ];
+  }
+
+  public onNewEntryClick():void{
+    let modal = this.modalCtrl.create(TimeEntryPage);
+    modal.present();
+  }
+
+  public onItemClicked(item:ITimeEntry):void{
+    this.actionSheetOptions.target = item;
+    this.actionSheetOptions.title = "Ausgewählt: " + item.title;
+    let actionSheet = this.actionSheetCtrl.create(this.actionSheetOptions);
+    actionSheet.present();
   }
 
 }

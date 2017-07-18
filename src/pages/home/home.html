@@ -16,13 +16,13 @@
 
 <ion-content padding class="content-area">
   <ion-fab right bottom class="addTimeEntryButton">
-    <button ion-fab color="danger"><ion-icon name="add"></ion-icon></button>
+    <button (tap)="onNewEntryClick()" ion-fab color="danger"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
 
   <ion-grid>
     <ion-row>
       <ion-col col-12 col-sm-12 col-md-6 col-lg-3 *ngFor="let timeEntry of timeEntries">
-        <time-card [timeEntry]="timeEntry"></time-card>
+        <time-card [timeEntry]="timeEntry" (tap)="onItemClicked(timeEntry)"></time-card>
       </ion-col>
     </ion-row>
   </ion-grid>

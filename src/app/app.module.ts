@@ -6,6 +6,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
+import {TimeEntryPage} from "../pages/time-entry/time-entry-page";
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -13,11 +14,13 @@ import { TimeEntriesProvider } from '../providers/time-entries/time-entries';
 import { TimeCardComponent } from '../components/time-card/time-card';
 import {MdDatepickerModule, MdInputModule, MdNativeDateModule} from "@angular/material";
 
+
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ListPage,
+    TimeEntryPage,
     TimeCardComponent
   ],
   imports: [
@@ -32,7 +35,8 @@ import {MdDatepickerModule, MdInputModule, MdNativeDateModule} from "@angular/ma
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    TimeEntryPage
   ],
   providers: [
     StatusBar,
