@@ -3,8 +3,15 @@
     <button ion-button menuToggle >
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Übersicht</ion-title>
+    <ion-title> </ion-title>
+    <p class="datepicker-caption">22.08.2017</p>
+    <ion-buttons end>
+      <input class="datepicker-input" mdInput [mdDatepicker]="picker" placeholder="Choose a date">
+      <button class="datepicker-button" mdSuffix [mdDatepickerToggle]="picker" ></button>
+    </ion-buttons>
   </ion-navbar>
+<!--  <ion-toolbar color="mediumLight">
+  </ion-toolbar>-->
 </ion-header>
 
 <ion-content padding class="content-area">
@@ -20,5 +27,5 @@
     </ion-row>
   </ion-grid>
 
-
+  <md-datepicker #picker touchUi="true"></md-datepicker>
 </ion-content>

@@ -10,6 +10,28 @@ page-home {
     bottom: 20px;
     right: 20px;
   }
+
+  .datepicker{
+    margin-left:10px;
+  }
+
+  .datepicker-input{
+    display:none;
+  }
+
+  .datepicker-button{
+    width:30px;
+    height:30px;
+    margin-left:10px;
+    margin-right:35px;
+  }
+
+  .datepicker-caption{
+    float:right;
+    font-size: 1.8rem;
+    margin-right:5px;
+    color: color($colors, dark);
+  }
 }
 
 
