@@ -8,7 +8,7 @@ let win;
 
 function createWindow () {
   // Create the browser window.
-  win = new BrowserWindow({width: 520, height: 650})
+  win = new BrowserWindow({width: 700, height: 550});
 
   // and load the index.html of the app.
   var url = 'http://localhost:8100';
@@ -30,8 +30,8 @@ function createWindow () {
     // Dereference the window object, usually you would store windows
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
-    win = null
-  })
+    win = null;
+  });
 }
 
 // This method will be called when Electron has finished
